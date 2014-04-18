@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">iFoundYou</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="icon_description">iFoundYou Icon</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="title_activity_ifound_you_home">IFoundYouHomeActivity</string>
+    <string name="mylocation">My Location</string>
+
+</resources>
