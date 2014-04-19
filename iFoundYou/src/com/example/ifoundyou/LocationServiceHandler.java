@@ -39,9 +39,15 @@ public class LocationServiceHandler extends IntentService{
         **/ 
 			String connectedWifiBSSID = iFoundYouWifiManager.getBSSID(myWifiManager);
 			if(!currentBSSID.equals(connectedWifiBSSID)){
-				currentBSSID = connectedWifiBSSID;
-				Intent localIntent = new Intent(Constants.BROADCAST_ACTION).addCategory(Intent.CATEGORY_DEFAULT).putExtra(Constants.LOCATION_STATUS, connectedWifiBSSID);
-				LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
+				if(connectedWifiBSSID!=null){
+					currentBSSID = connectedWifiBSSID;
+					Intent localIntent = new Intent(Constants.BROADCAST_ACTION).addCategory(Intent.CATEGORY_DEFAULT).putExtra(Constants.LOCATION_STATUS, connectedWifiBSSID);
+					LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
+				}
+				else{
+					Intent localIntent = new Intent(Constants.BROADCAST_ACTION).addCategory(Intent.CATEGORY_DEFAULT).putExtra(Constants.LOCATION_STATUS, "Not connected to Wifi :(");
+					LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
+				}
 			}
 		}
      }

@@ -8,53 +8,42 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".IFoundYouHomeActivity" >
 
-    <ImageButton
-        android:id="@+id/addFriendImageButton"
+    <ImageView
+        android:id="@+id/applicationIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/find_icon" />
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:src="@drawable/friendicon" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/addFriendImageButton"
-        android:layout_marginLeft="44dp"
-        android:layout_toRightOf="@+id/addFriendImageButton"
-        android:src="@drawable/find_location" />
-
-    <TextView
-        android:id="@+id/locationTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/currentLocationTextView"
-        android:layout_alignLeft="@+id/addFriendImageButton"
-        android:layout_marginBottom="58dp"
-        android:text="@string/mylocation"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/applicationIcon"
+        android:layout_marginRight="18dp"
+        android:src="@drawable/findicon" />
 
     <TextView
         android:id="@+id/currentLocationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/locationTitleTextView"
-        android:layout_below="@+id/addFriendImageButton"
-        android:layout_marginTop="140dp"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_below="@+id/currentLocationTitleTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Outside UTA"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button
-        android:id="@+id/startServiceButton"
+    <TextView
+        android:id="@+id/currentLocationTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/currentLocationTextView"
-        android:layout_below="@+id/locationTitleTextView"
-        android:layout_marginTop="49dp"
-        android:onClick="myServiceButtonClickHandler"
-        android:text="Button" />
+        android:layout_below="@+id/applicationIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="111dp"
+        android:text="So here i am"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

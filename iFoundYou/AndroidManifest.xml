@@ -7,7 +7,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
-     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +17,8 @@
         android:theme="@style/AppTheme" >
         <service
             android:name="com.example.ifoundyou.LocationServiceHandler"
-            android:exported="false"/>
+            android:exported="false" />
+
         <activity
             android:name="com.example.ifoundyou.IFoundYouMainActivity"
             android:label="@string/app_name" >
@@ -27,12 +29,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.ifoundyou.RegisterActivity"
-            android:label="@string/title_activity_register" >
-        </activity>
-        <activity
             android:name="com.example.ifoundyou.IFoundYouHomeActivity"
             android:label="@string/title_activity_ifound_you_home" >
+        </activity>
+        <activity
+            android:name="com.example.ifoundyou.IFoundYouRegisterActivity"
+            android:label="@string/title_activity_ifound_you_register" >
+        </activity>
+        <activity
+            android:name="com.example.ifoundyou.IFoundYouLoginActivity"
+            android:label="@string/title_activity_ifound_you_login" >
+        </activity>
+        <activity
+            android:name="com.example.ifoundyou.IFoundYouAddBudActivity"
+            android:label="@string/title_activity_add_bud" >
+        </activity>
+        <activity
+            android:name="com.example.ifoundyou.IFoundYouYourBudActivity"
+            android:label="@string/title_activity_ifound_you_your_bud" >
+        </activity>
+        <activity
+            android:name="com.example.ifoundyou.MyListActivity"
+            android:label="@string/title_activity_ifound_you_register" >
         </activity>
     </application>
 

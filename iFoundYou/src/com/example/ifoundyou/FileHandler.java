@@ -41,12 +41,12 @@ public class FileHandler {
 		}
 	}
 	**/
-
+	
 	public void putCredential(Context ctx, String username, String password){
 		String data = username+";;"+password;
 		SharedPreferences cred = ctx.getSharedPreferences(credFileName, 0); 
 		Editor editor = cred.edit();
-		editor.putString("credvalue", data);
+		editor.putString("credValue", data);
 		editor.commit();
 	}
 	
@@ -68,6 +68,37 @@ public class FileHandler {
 			return creddata;
 		else
 			return null;
-			
+	}
+	
+	public void putBud(Context ctx, String username, String email){
+		String data = username+"-*-"+email; // each username & corresponding email is seperated by -*-
+		SharedPreferences cred = ctx.getSharedPreferences(budFileName, 0);
+		String budListData = cred.getString("budValue", null);
+		if(budListData!=null){			
+			Editor editor = cred.edit();
+			editor.putString("budValue", budListData+":::"+data); //each user is sperated by :::
+			editor.commit();
+		}
+		else{
+			Editor editor = cred.edit();
+			editor.putString("budValue", data);
+			editor.commit();
+		}
+	}
+	
+	public void putBudList(Context ctx, String list){
+		SharedPreferences cred = ctx.getSharedPreferences(budFileName, 0); 
+		Editor editor = cred.edit();
+		editor.putString("budValue", list); //each user is sperated by :::
+		editor.commit();
+	}
+	
+	public String getBudList(Context ctx){
+		SharedPreferences cred = ctx.getSharedPreferences(budFileName, 0); 
+		String budListData = cred.getString("budValue", null);
+		if(budListData!=null)
+			return budListData;
+		else
+			return null;
 	}
 }

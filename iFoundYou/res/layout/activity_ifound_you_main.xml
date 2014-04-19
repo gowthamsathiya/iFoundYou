@@ -8,4 +8,43 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".IFoundYouMainActivity" >
 
+    <ImageView
+        android:id="@+id/applicationIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="92dp"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/appNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/applicationIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:text="@string/app_name"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/iFoundYouRegisterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/appNameTextView"
+        android:layout_alignRight="@+id/appNameTextView"
+        android:layout_below="@+id/iFoundYouLoginButton"
+        android:layout_marginTop="26dp"
+        android:text="@string/register" />
+
+    <Button
+        android:id="@+id/iFoundYouLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/appNameTextView"
+        android:layout_alignRight="@+id/iFoundYouRegisterButton"
+        android:layout_below="@+id/appNameTextView"
+        android:layout_marginTop="48dp"
+        android:text="@string/login" />
+
 </RelativeLayout>
