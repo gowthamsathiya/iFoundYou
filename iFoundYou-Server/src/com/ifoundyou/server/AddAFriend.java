@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ifoundyou.data.IFoundYouData;
-import com.ifoundyou.process.UserRegister;
+import com.ifoundyou.process.AddFriend;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class AddAFriend
  */
-@WebServlet(description = "Register new user to iFoundYou environment", urlPatterns = { "/Register" })
-public class Register extends HttpServlet {
+@WebServlet("/AddAFriend")
+public class AddAFriend extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public AddAFriend() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +33,16 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IFoundYouData data = new IFoundYouData();
-		data.setEmail(request.getParameter("useremail"));
-		data.setName(request.getParameter("name"));
-		data.setPassword(request.getParameter("password"));
+		data.setEmail(request.getParameter("email"));
+		data.setFriendEmail(request.getParameter("friendemail"));
 		PrintWriter out = response.getWriter();
-		UserRegister register = new UserRegister(data);
+		AddFriend friend = new AddFriend(data);
 		try {
-			int status = register.registerUser();
-			if(status == 0){
-				//user already registered
-				out.println("User already registered");
-			}
-			else{
-				//registered successfully
-				out.println("Registration successfull");
-			}
+			String result = friend.add();
+			out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			out.println("Some problem with server. Try again after sometime pls");
+			out.println("Some error happened. Try again latter");
 		}
 	}
 

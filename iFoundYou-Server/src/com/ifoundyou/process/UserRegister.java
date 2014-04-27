@@ -25,9 +25,10 @@ public class UserRegister {
 				con=Connections.connect();
 		
 				ps=con.prepareStatement(sql);
-				ps.setString(1,data.getName());
-				ps.setString(2,data.getEmail());
+				ps.setString(2,data.getName());
+				ps.setString(1,data.getEmail());
 				ps.setString(3,data.getPassword());
+				//System.out.println(data.getName()+".."+data.getEmail()+".."+data.getPassword());
 				ps.executeUpdate();
 				
 				return 1; //registered successfully
@@ -51,15 +52,18 @@ public class UserRegister {
 			con=Connections.connect();
 			ps=con.prepareStatement(sql);
 			ps.setString(1,data.getEmail());
-			result = ps.executeQuery(sql);
+			result = ps.executeQuery();
 			
 			if(result.next()){
+				System.out.println("User found");
 				return true; 
 			}
 			else{
+				System.out.println("User not found");
 				return false;
 			}
 		}catch(SQLException e){
+			System.out.println("Exception finding user");
 			e.printStackTrace();
 		}finally{
 			con.close();

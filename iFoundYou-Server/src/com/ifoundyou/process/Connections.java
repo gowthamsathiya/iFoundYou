@@ -16,9 +16,9 @@ import com.ifoundyou.data.IFoundYouData;
 		try {
 			
 			
-			Class.forName(IFoundYouData.DRIVER);
-			 con=DriverManager.getConnection(IFoundYouData.URL);
-			
+			 Class.forName(IFoundYouData.DRIVER);
+			 //con=DriverManager.getConnection(IFoundYouData.URL,IFoundYouData.user,IFoundYouData.dbpassword);
+			 con = DriverManager.getConnection(IFoundYouData.getURL());
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

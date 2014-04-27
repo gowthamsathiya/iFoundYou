@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ifoundyou.data.IFoundYouData;
-import com.ifoundyou.process.UserRegister;
+import com.ifoundyou.process.LocationSave;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class SaveLocation
  */
-@WebServlet(description = "Register new user to iFoundYou environment", urlPatterns = { "/Register" })
-public class Register extends HttpServlet {
+@WebServlet("/SaveLocation")
+public class SaveLocation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public SaveLocation() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +32,20 @@ public class Register extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		IFoundYouData data = new IFoundYouData();
-		data.setEmail(request.getParameter("useremail"));
-		data.setName(request.getParameter("name"));
-		data.setPassword(request.getParameter("password"));
+		String bssid = request.getParameter("bssid");
+		String location = request.getParameter("location");
 		PrintWriter out = response.getWriter();
-		UserRegister register = new UserRegister(data);
+		IFoundYouData data = new IFoundYouData();
+		data.setBSSID(bssid);
+		data.setLocation(location);
+		
+		LocationSave loc = new LocationSave(data);
 		try {
-			int status = register.registerUser();
-			if(status == 0){
-				//user already registered
-				out.println("User already registered");
-			}
-			else{
-				//registered successfully
-				out.println("Registration successfull");
-			}
+			int numbofrows = loc.addLocation();
+			out.println(numbofrows+"added successfully");
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			out.println("Some problem with server. Try again after sometime pls");
 		}
 	}
 

@@ -43,7 +43,7 @@ public class UserAuthentication {
 						ps.setString(0, friendemail);
 						friendnameresult = ps.executeQuery();
 						if(friendnameresult.next()){
-							friendname = friendnameresult.getString(1);
+							friendname = friendnameresult.getString(2);
 						}
 						friendsList+=friendname+"-*-"+friendemail+"/-/";
 					}
