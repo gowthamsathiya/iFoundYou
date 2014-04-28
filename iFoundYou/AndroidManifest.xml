@@ -52,6 +52,10 @@
             android:name="com.example.ifoundyou.MyListActivity"
             android:label="@string/title_activity_ifound_you_register" >
         </activity>
+        <activity
+            android:name="com.example.ifoundyou.IFoundYouFriendLocationActivity"
+            android:label="@string/title_activity_friend_location" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,26 +1,68 @@
 package com.example.ifoundyou;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class IFoundYouRegisterActivity extends Activity {
 
+
+	private EditText nameEditText;
+	private EditText emailEditText;
+	private EditText passwordEditText;
+	private EditText cPasswordEditText;
+	private Button registerbutton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ifound_you_register);
 		
+		nameEditText = (EditText)findViewById(R.id.nameEditText);
+		emailEditText = (EditText)findViewById(R.id.emailEditText);
+		passwordEditText = (EditText)findViewById(R.id.passwordEditText);
+		cPasswordEditText = (EditText)findViewById(R.id.cPasswordEditText);
+		registerbutton = (Button)findViewById(R.id.registerButton);
+		
+		
+		
 	}
 
+	OnClickListener registerButtonListener = new OnClickListener(){
+		boolean valid = true;
+		@Override
+		public void onClick(View arg0) {
+			if(!Validate.comparePassword(passwordEditText.getText().toString(), cPasswordEditText.getText().toString())){
+				valid = false;
+				Toast.makeText(getApplicationContext(), "Passwords doesn't match", Toast.LENGTH_SHORT).show();
+			}
+			if(!Validate.validateName(nameEditText.getText().toString())){
+				valid = false;
+				Toast.makeText(getApplicationContext(), "Name is invalid", Toast.LENGTH_SHORT).show();
+			}
+			if(!Validate.validateEmail(emailEditText.getText().toString())){
+				valid = false;
+				Toast.makeText(getApplicationContext(), "Email id invalid", Toast.LENGTH_SHORT).show();
+			}
+			if(!Validate.validatePassword(passwordEditText.getText().toString())){
+				valid = false;
+				Toast.makeText(getApplicationContext(), "Password should contain atleast one numeric, lower case and upper case character", Toast.LENGTH_SHORT).show();
+			}
+			if(valid){
+				
+			}
+		}
+		
+	};
 	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 

@@ -23,5 +23,7 @@
     <string name="addBud">Add your bud</string>
     <string name="addhim">Add Him</string>
     <string name="title_activity_ifound_you_your_bud">IFoundYouYourBudActivity</string>
+    <string name="title_activity_friend_location">FriendLocationActivity</string>
+    <string name="isin">is in</string>
 
 </resources>

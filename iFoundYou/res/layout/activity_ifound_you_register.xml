@@ -63,7 +63,9 @@
         android:layout_marginLeft="23dp"
         android:layout_toRightOf="@+id/passwordTextView"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="text" >
+ 		<requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/emailEditText"
@@ -73,8 +75,6 @@
         android:layout_alignLeft="@+id/nameEditText"
         android:ems="10"
         android:inputType="textEmailAddress" >
-
-        <requestFocus />
     </EditText>
 
     <EditText
