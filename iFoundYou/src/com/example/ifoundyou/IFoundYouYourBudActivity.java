@@ -16,7 +16,7 @@ public class IFoundYouYourBudActivity extends ListActivity {
 		    FileHandler handler = new FileHandler();
 			String budList = handler.getBudList(getApplicationContext());
 			if(budList!=null){
-				String[] budListArray = budList.split(":::");
+				String[] budListArray = budList.split("/-/");
 				String[] users = new String[budListArray.length];
 				int next=0;
 				for(String bList: budListArray){

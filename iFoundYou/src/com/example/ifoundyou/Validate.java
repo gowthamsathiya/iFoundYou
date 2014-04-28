@@ -12,6 +12,7 @@ public class Validate {
 	private static final String PASSWORD_PATTER =
 			"((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})";
 	
+	@SuppressWarnings("unused")
 	private static Pattern pattern;
 	private static Matcher matcher;
 	

@@ -9,20 +9,20 @@
     tools:context=".IFoundYouHomeActivity" >
 
     <ImageView
-        android:id="@+id/applicationIcon"
+        android:id="@+id/addBudImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginRight="15dp"
-        android:layout_toLeftOf="@+id/imageView2"
+        android:layout_toLeftOf="@+id/budListImageView"
         android:src="@drawable/friendicon" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/budListImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/applicationIcon"
+        android:layout_alignTop="@+id/addBudImageView"
         android:layout_marginRight="18dp"
         android:src="@drawable/findicon" />
 
@@ -40,7 +40,7 @@
         android:id="@+id/currentLocationTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/applicationIcon"
+        android:layout_below="@+id/addBudImageView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="111dp"
         android:text="So here i am"

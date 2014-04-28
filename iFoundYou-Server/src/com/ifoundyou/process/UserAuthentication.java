@@ -32,7 +32,7 @@ public class UserAuthentication {
 			if(result.next()){
 				String friendlist = "select * from friendstable where useremail = ?";
 				ps=con.prepareStatement(friendlist);
-				ps.setString(0, data.getEmail());
+				ps.setString(1, data.getEmail());
 				friendresult = ps.executeQuery();
 				if(friendresult.isBeforeFirst()){
 					while(friendresult.next()){
@@ -40,10 +40,10 @@ public class UserAuthentication {
 						String friendnamesql = "select name from usertable where useremail = ?";
 						String friendname="";
 						ps = con.prepareStatement(friendnamesql);
-						ps.setString(0, friendemail);
+						ps.setString(1, friendemail);
 						friendnameresult = ps.executeQuery();
 						if(friendnameresult.next()){
-							friendname = friendnameresult.getString(2);
+							friendname = friendnameresult.getString(1);
 						}
 						friendsList+=friendname+"-*-"+friendemail+"/-/";
 					}

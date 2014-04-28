@@ -32,12 +32,14 @@ public class IFoundYouMainActivity extends Activity {
 		//startService(mServiceIntent);
 		
 		FileHandler handler = new FileHandler();
+		/**
 		String l = "awd-*-efwe:::wjj-*-jbwq:::jhwhdwq jhg-*-wqqwf:::hvhjv-*-jgjg ygu";
 		handler.putBudList(getApplicationContext(), l);
+		**/
 		int val = handler.checkCredential(getApplicationContext());
 		if(val==0){
 			Toast.makeText(getApplicationContext(), "not found", Toast.LENGTH_SHORT).show();
-			Intent home = new Intent(this,IFoundYouYourBudActivity.class);
+			Intent home = new Intent(this,IFoundYouRegisterActivity.class);
 			startActivity(home);
 		}
 		else

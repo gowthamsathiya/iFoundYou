@@ -26,15 +26,16 @@ public class FriendLocation {
 			result = ps.executeQuery();
 			
 			while(result.next()){
-				String lastLocationBSSID = result.getString(1);
-				String lastTimeFound = result.getString(2);
-				
+				String lastLocationBSSID = result.getString(2);
+				String lastTimeFound = result.getString(3);
+				System.out.println(lastLocationBSSID+"--"+lastTimeFound);
 				String locsql = "select locationname from locationtable where locationid = ?";
 				PreparedStatement locps = con.prepareStatement(locsql);
 				locps.setString(1, lastLocationBSSID);
 				ResultSet locresult = locps.executeQuery();
 				
 				while(locresult.next()){
+					System.out.println(locresult.getString(1)+"-*-"+lastTimeFound);
 					data.setUserLocation(locresult.getString(1)+"-*-"+lastTimeFound);
 				}
 			}

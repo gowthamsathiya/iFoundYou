@@ -1,6 +1,8 @@
 package com.example.ifoundyou;
 
+import java.util.concurrent.ExecutionException;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ public class IFoundYouRegisterActivity extends Activity {
 	private EditText passwordEditText;
 	private EditText cPasswordEditText;
 	private Button registerbutton;
+	private Intent navigateIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class IFoundYouRegisterActivity extends Activity {
 		cPasswordEditText = (EditText)findViewById(R.id.cPasswordEditText);
 		registerbutton = (Button)findViewById(R.id.registerButton);
 		
+		registerbutton.setOnClickListener(registerButtonListener);
 		
 		
 	}
@@ -56,7 +60,34 @@ public class IFoundYouRegisterActivity extends Activity {
 				Toast.makeText(getApplicationContext(), "Password should contain atleast one numeric, lower case and upper case character", Toast.LENGTH_SHORT).show();
 			}
 			if(valid){
+				String url ="http://ifoundyou.elasticbeanstalk.com/Register?useremail="+emailEditText.getText().toString()+"&name="+nameEditText.getText().toString()+"&password="+passwordEditText.getText().toString();
 				
+				try {
+					String resultString = new ConnectToAWS().execute(url).get();
+					Toast.makeText(getApplicationContext(), resultString, Toast.LENGTH_SHORT).show();
+					if(resultString.equals("Registration successfull"))
+					{
+						FileHandler fh= new FileHandler();
+						fh.putCredential(getApplicationContext(), nameEditText.getText().toString(), passwordEditText.getText().toString());
+						navigateIntent = new Intent(getApplicationContext(),IFoundYouHomeActivity.class);
+						startActivity(navigateIntent);
+					}else if(resultString.equals("User already registered"))
+					{
+						Toast.makeText(getApplicationContext(),"User already registered! try login", Toast.LENGTH_SHORT).show();
+
+					}else
+					{
+						Toast.makeText(getApplicationContext(),"Some problem with server. Try again after sometime pls", Toast.LENGTH_SHORT).show();
+
+					}
+					
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		

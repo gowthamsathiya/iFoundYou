@@ -41,7 +41,13 @@ public class FileHandler {
 		}
 	}
 	**/
-	
+	public String getMyEmail(Context ctx){
+		String cred = getCredential(ctx);
+		if(cred!=null)
+			return cred.split(";;")[0];
+		else
+			return null;
+	}
 	public void putCredential(Context ctx, String username, String password){
 		String data = username+";;"+password;
 		SharedPreferences cred = ctx.getSharedPreferences(credFileName, 0); 
@@ -76,7 +82,7 @@ public class FileHandler {
 		String budListData = cred.getString("budValue", null);
 		if(budListData!=null){			
 			Editor editor = cred.edit();
-			editor.putString("budValue", budListData+":::"+data); //each user is sperated by :::
+			editor.putString("budValue", budListData+"/-/"+data); //each user is sperated by :::
 			editor.commit();
 		}
 		else{
@@ -101,4 +107,5 @@ public class FileHandler {
 		else
 			return null;
 	}
+	
 }

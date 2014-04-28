@@ -35,10 +35,11 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f080021;
+        public static final int addBudImageView=0x7f080008;
         public static final int addBudTextView=0x7f080000;
         public static final int addHimButton=0x7f080004;
         public static final int appNameTextView=0x7f080012;
-        public static final int applicationIcon=0x7f080008;
+        public static final int budListImageView=0x7f080009;
         public static final int budListView=0x7f08001f;
         public static final int cPasswordEditText=0x7f08001d;
         public static final int cPasswordTextView=0x7f080019;
@@ -53,7 +54,6 @@ public final class R {
         public static final int iFoundYouLoginButton=0x7f080014;
         public static final int iFoundYouRegisterButton=0x7f080013;
         public static final int imageView1=0x7f080001;
-        public static final int imageView2=0x7f080009;
         public static final int listNameTextView=0x7f080020;
         public static final int loginButton=0x7f080011;
         public static final int nameEditText=0x7f08001a;

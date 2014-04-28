@@ -1,6 +1,7 @@
 package com.ifoundyou.server;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -36,8 +37,10 @@ public class LocationChange extends HttpServlet {
 		data.setUserLocation(request.getParameter("location"));
 		data.setTime(request.getParameter("time"));
 		LocationUpdate update = new LocationUpdate(data);
+		PrintWriter out = response.getWriter();
 		try {
-			update.updateLocation();
+			String locationName = update.updateLocation();
+			out.println(locationName);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

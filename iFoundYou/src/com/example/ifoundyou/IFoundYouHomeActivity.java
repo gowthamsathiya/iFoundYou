@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class IFoundYouHomeActivity extends Activity {
@@ -22,7 +25,10 @@ public class IFoundYouHomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ifound_you_home);
-		
+		ImageView budListImageView = (ImageView) findViewById(R.id.budListImageView);
+		ImageView addbudlist=(ImageView) findViewById(R.id.addBudImageView);
+		budListImageView.setOnClickListener(budlistimage);
+		addbudlist.setOnClickListener(addbudimage);
 		mServiceIntent = new Intent(this, LocationServiceHandler.class);
 		startService(mServiceIntent);
 		
@@ -33,6 +39,27 @@ public class IFoundYouHomeActivity extends Activity {
         
 	}
 
+	
+	private OnClickListener budlistimage = new OnClickListener(){
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent Navbudlist= new Intent(getApplicationContext(),IFoundYouYourBudActivity.class);
+			startActivity(Navbudlist);
+		}
+	};
+	
+	private OnClickListener addbudimage = new OnClickListener(){
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent navaddbud= new Intent(getApplicationContext(),IFoundYouAddBudActivity.class);
+			startActivity(navaddbud);
+		}
+
+	};
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
