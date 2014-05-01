@@ -103,6 +103,8 @@
         android:layout_below="@+id/cPasswordTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
-        android:text="@string/register" />
+        android:background="@drawable/sbuttonstyle"
+        android:text="@string/register"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

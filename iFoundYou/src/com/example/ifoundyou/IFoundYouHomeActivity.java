@@ -29,7 +29,8 @@ public class IFoundYouHomeActivity extends Activity {
 		currentLocationTextView = (TextView) findViewById(R.id.currentLocationTextView);
 		ImageView budListImageView = (ImageView) findViewById(R.id.budListImageView);
 		ImageView addbudlist=(ImageView) findViewById(R.id.addBudImageView);
-		Button removeButton = (Button) findViewById(R.id.removeButton);
+		//Button removeButton = (Button) findViewById(R.id.removeButton);
+		/*
 		removeButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
@@ -37,6 +38,7 @@ public class IFoundYouHomeActivity extends Activity {
 				hand.removeSP(getApplicationContext());
 			}
 		});
+		*/
 		budListImageView.setOnClickListener(budlistimage);
 		addbudlist.setOnClickListener(addbudimage);
 		mServiceIntent = new Intent(this, LocationServiceHandler.class);
@@ -87,7 +89,7 @@ public class IFoundYouHomeActivity extends Activity {
 		@Override
 		public void onReceive(Context arg0, Intent arg1) {
 			 String text = arg1.getStringExtra(Constants.LOCATION_STATUS);
-			 Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+			// Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
 			 IFoundYouHomeActivity.currentLocationTextView.setText(text);
 		}
 	}	

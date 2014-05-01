@@ -67,6 +67,8 @@
         android:layout_below="@+id/passwordLoginEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:text="@string/login" />
+        android:background="@drawable/sbuttonstyle"
+        android:text="@string/login"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

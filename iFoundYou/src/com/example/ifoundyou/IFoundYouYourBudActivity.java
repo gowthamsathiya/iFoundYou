@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 
@@ -42,32 +43,34 @@ public class IFoundYouYourBudActivity extends ListActivity {
 	  protected void onListItemClick(ListView l, View v, int position, long id) {
 		  String personName = (String) getListAdapter().getItem(position);
 		 // Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();
-		  String personEmail = handler.getFriendEmail(getApplicationContext(), personName);
-		  //String myLocation = LocationHandler.getLocation(personName);
-		  String url = "http://ifoundyou.elasticbeanstalk.com/QueryLocation?useremail="+personEmail;
-		  String response;
-		try {
-			response = new ConnectToAWS().execute(url).get();
-			Log.d("friend location url", url);
-			Log.d("friend location", response);
-			if(!response.equals("null")){
-				Intent locationActivity = new Intent(this,IFoundYouFriendLocationActivity.class);
-				locationActivity.putExtra(Constants.LAST_FOUND, response.substring(response.indexOf("-*-")+3));
-				locationActivity.putExtra(Constants.PERSON_LOCATION, response.substring(0,response.indexOf("-*-")));
-				locationActivity.putExtra(Constants.PERSON_NAME, personName);
-				startActivity(locationActivity);
-			}else{
-				Intent locationActivity = new Intent(this,IFoundYouFriendLocationActivity.class);
-				locationActivity.putExtra(Constants.LAST_FOUND, "Not found");
-				locationActivity.putExtra(Constants.PERSON_LOCATION, "Not found");
-				locationActivity.putExtra(Constants.PERSON_NAME, personName);
-				startActivity(locationActivity);
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		  
+		  if(personName!="None"){
+			  String personEmail = handler.getFriendEmail(getApplicationContext(), personName);
+			  String url = "http://ifoundyou.elasticbeanstalk.com/QueryLocation?useremail="+personEmail;
+			  String response;
+			  try {
+				  response = new ConnectToAWS().execute(url).get();
+				  Log.d("friend location url", url);
+				  Log.d("friend location", response);
+				  if(response!=null){
+					  Intent locationActivity = new Intent(this,IFoundYouFriendLocationActivity.class);
+					  locationActivity.putExtra(Constants.LAST_FOUND, response.substring(response.indexOf("-*-")+3));
+					  locationActivity.putExtra(Constants.PERSON_LOCATION, response.substring(0,response.indexOf("-*-")));
+					  locationActivity.putExtra(Constants.PERSON_NAME, personName);
+					  startActivity(locationActivity);
+				  }else{
+					  Intent locationActivity = new Intent(this,IFoundYouFriendLocationActivity.class);
+					  locationActivity.putExtra(Constants.LAST_FOUND, "Not found");
+					  locationActivity.putExtra(Constants.PERSON_LOCATION, "Not found");
+					  locationActivity.putExtra(Constants.PERSON_NAME, personName);
+					  startActivity(locationActivity);
+				  }
+			  } catch (InterruptedException e) {
+				  e.printStackTrace();
+			  } catch (ExecutionException e) {
+				  e.printStackTrace();
+			  }
+		  }else{
+			  Toast.makeText(getApplicationContext(), "No friends found", Toast.LENGTH_SHORT).show();
+		  }
 	  }
 }

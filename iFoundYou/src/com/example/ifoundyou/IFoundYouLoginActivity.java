@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutionException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,39 +32,38 @@ public class IFoundYouLoginActivity extends Activity {
 	
 	OnClickListener loginButtonListener=new OnClickListener()
 	{
-
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			String url ="http://ifoundyou.elasticbeanstalk.com/Authentication?useremail="+nameEditText.getText().toString()+"&password="+passwordEditText.getText().toString();
-try
+			try
+			{
+				String resultString = new ConnectToAWS().execute(url).get();
+				Log.d("Result of authentication", resultString);
+				FileHandler fh= new FileHandler();
+				if(resultString.contains("USRNF")){
+					Toast.makeText(getApplicationContext(), "Invalid Username and password! try register", Toast.LENGTH_SHORT).show();
+				}else if (resultString.contains("NFRNDS")){
+					fh.putCredential(getApplicationContext(), nameEditText.getText().toString(), passwordEditText.getText().toString());
+					//fh.putBudList(getApplicationContext(), "-");
+					Intent navhome= new Intent(getApplicationContext(),IFoundYouHomeActivity.class);
+					startActivity(navhome);
+					finish();
+				}else{
+					fh.putCredential(getApplicationContext(), nameEditText.getText().toString(), passwordEditText.getText().toString());
+					fh.putBudList(getApplicationContext(), resultString);
+					Intent navhome= new Intent(getApplicationContext(),IFoundYouHomeActivity.class);
+					startActivity(navhome);
+					finish();
+				}
 
-{
-	String resultString = new ConnectToAWS().execute(url).get();
-	FileHandler fh= new FileHandler();
-	if(resultString.contains("USRNF")){
-		Toast.makeText(getApplicationContext(), "Invalid Username and password! try register", Toast.LENGTH_SHORT).show();
-	}else if (resultString.equals("NFRNDS")){
-		fh.putCredential(getApplicationContext(), nameEditText.getText().toString(), passwordEditText.getText().toString());
-	}else {
-		fh.putCredential(getApplicationContext(), nameEditText.getText().toString(), passwordEditText.getText().toString());
-		fh.putBudList(getApplicationContext(), resultString);
-		Intent navhome= new Intent(getApplicationContext(),IFoundYouHomeActivity.class);
-		startActivity(navhome);
-	
-	}
-
-} catch (InterruptedException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-} catch (ExecutionException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-finally
-{
-}
-}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+			finally{
+			}
+		}
 
 		
 	};

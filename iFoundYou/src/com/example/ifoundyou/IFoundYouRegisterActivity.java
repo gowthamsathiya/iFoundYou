@@ -60,6 +60,7 @@ public class IFoundYouRegisterActivity extends Activity {
 				Toast.makeText(getApplicationContext(), "Password should contain atleast one numeric, lower case and upper case character", Toast.LENGTH_SHORT).show();
 			}
 			if(valid){
+				Toast.makeText(getApplicationContext(), "to be sent", Toast.LENGTH_SHORT).show();
 				String url ="http://ifoundyou.elasticbeanstalk.com/Register?useremail="+emailEditText.getText().toString()+"&name="+nameEditText.getText().toString()+"&password="+passwordEditText.getText().toString();
 				
 				try {
@@ -71,6 +72,7 @@ public class IFoundYouRegisterActivity extends Activity {
 						fh.putCredential(getApplicationContext(), emailEditText.getText().toString(), passwordEditText.getText().toString());
 						navigateIntent = new Intent(getApplicationContext(),IFoundYouHomeActivity.class);
 						startActivity(navigateIntent);
+						finish();
 					}else if(resultString.contains("User already registered"))
 					{
 						Toast.makeText(getApplicationContext(),"User already registered! try login", Toast.LENGTH_SHORT).show();

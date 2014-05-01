@@ -35,7 +35,9 @@
         android:layout_alignRight="@+id/appNameTextView"
         android:layout_below="@+id/iFoundYouLoginButton"
         android:layout_marginTop="26dp"
-        android:text="@string/register" />
+        android:background="@drawable/sbuttonstyle"
+        android:text="@string/register"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/iFoundYouLoginButton"
@@ -45,6 +47,8 @@
         android:layout_alignRight="@+id/iFoundYouRegisterButton"
         android:layout_below="@+id/appNameTextView"
         android:layout_marginTop="48dp"
-        android:text="@string/login" />
+        android:background="@drawable/sbuttonstyle"
+        android:text="@string/login"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

@@ -124,7 +124,7 @@ public class FileHandler {
 				Log.d("pair", pair);
 				String[] nameemail = pair.split("-*-");
 				if(nameemail[0].equals(name)){
-					return pair.substring(pair.indexOf("-*-")+3, pair.length()-1);
+					return pair.substring(pair.indexOf("-*-")+3, pair.length()).trim();
 				}
 			}
 		}

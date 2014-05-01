@@ -55,6 +55,8 @@
         android:layout_below="@+id/emailAddBudEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
-        android:text="@string/addhim" />
+        android:background="@drawable/sbuttonstyle"
+        android:text="@string/addhim"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

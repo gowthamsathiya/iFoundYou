@@ -15,6 +15,7 @@ public class IFoundYouMainActivity extends Activity {
 
 	Button iFoundYouRegisterButton;
 	private Button iFoundYouLoginButton;
+	private FileHandler handler;
 	
 	public void onDestroy() {
 	    //    this.unregisterReceiver(receiver);
@@ -32,7 +33,7 @@ public class IFoundYouMainActivity extends Activity {
 		iFoundYouLoginButton = (Button)findViewById(R.id.iFoundYouLoginButton);
 		iFoundYouLoginButton.setOnClickListener(loginListener);
 		
-		FileHandler handler = new FileHandler();
+		handler = new FileHandler();
 		int val = handler.checkCredential(getApplicationContext());
 		if(val==0){
 			//Toast.makeText(getApplicationContext(), "not found", Toast.LENGTH_SHORT).show();
@@ -43,6 +44,7 @@ public class IFoundYouMainActivity extends Activity {
 			Toast.makeText(getApplicationContext(), "found", Toast.LENGTH_SHORT).show();
 			Intent home = new Intent(this,IFoundYouHomeActivity.class);
 			startActivity(home); 
+			finish();
 		}
 	}
 
@@ -52,6 +54,7 @@ public class IFoundYouMainActivity extends Activity {
 		public void onClick(View arg0) {
 			Intent registerActivity = new Intent(IFoundYouMainActivity.this, IFoundYouRegisterActivity.class);
 			startActivity(registerActivity);
+			finish();
 		}
 		
 	};
@@ -62,6 +65,7 @@ public class IFoundYouMainActivity extends Activity {
 		public void onClick(View arg0) {
 			Intent loginActivity = new Intent(IFoundYouMainActivity.this, IFoundYouLoginActivity.class);
 			startActivity(loginActivity);
+			finish();
 		}
 		
 	};

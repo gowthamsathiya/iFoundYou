@@ -33,17 +33,6 @@ public class LocationServiceHandler extends IntentService{
 
 		while(true){
 			SystemClock.sleep(5000);
-		/**
-        handler.post(new Runnable()
-        {  
-//          @Override
-            public void run()
-            {
-                Toast.makeText(getApplicationContext(), "File has been saved", 
-                    Toast.LENGTH_SHORT).show();
-            }
-        });
-        **/ 
 			String connectedWifiBSSID = iFoundYouWifiManager.getBSSID(myWifiManager);
 			try {
 				FileHandler handler = new FileHandler();
@@ -56,7 +45,7 @@ public class LocationServiceHandler extends IntentService{
 				String location = new ConnectToAWS().execute(url).get();
 				Log.d("response location of me", location);
 				//Toast.makeText(this, "response from url : "+location, Toast.LENGTH_SHORT).show();
-				if(!currentBSSID.equals(connectedWifiBSSID)){
+				//if(!currentBSSID.equals(connectedWifiBSSID)){
 					if(connectedWifiBSSID!=null){
 						currentBSSID = connectedWifiBSSID;
 						Intent localIntent = new Intent(Constants.BROADCAST_ACTION).addCategory(Intent.CATEGORY_DEFAULT).putExtra(Constants.LOCATION_STATUS, location);
@@ -66,7 +55,7 @@ public class LocationServiceHandler extends IntentService{
 						Intent localIntent = new Intent(Constants.BROADCAST_ACTION).addCategory(Intent.CATEGORY_DEFAULT).putExtra(Constants.LOCATION_STATUS, "Not connected to Wifi :(");
 						LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
 					}
-				}
+				//}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} catch (ExecutionException e) {
