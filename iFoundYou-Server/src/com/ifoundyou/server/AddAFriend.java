@@ -33,7 +33,7 @@ public class AddAFriend extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IFoundYouData data = new IFoundYouData();
-		data.setEmail(request.getParameter("email"));
+		data.setEmail(request.getParameter("useremail"));
 		data.setFriendEmail(request.getParameter("friendemail"));
 		PrintWriter out = response.getWriter();
 		AddFriend friend = new AddFriend(data);

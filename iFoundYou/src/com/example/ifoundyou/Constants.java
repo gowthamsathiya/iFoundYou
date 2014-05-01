@@ -13,4 +13,6 @@ public final class Constants {
     // Define the key for person whose location to be found out
     public static final String PERSON_NAME = "com.app.ifoundyou.PERSON";
 
+	public static String LAST_FOUND = "com.app.ifoundyou.LASTFOUND";
+
 }

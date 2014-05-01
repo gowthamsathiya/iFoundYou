@@ -28,13 +28,14 @@ public class LocationUpdate {
 	}
 	public void update() throws SQLException{
 		try{
-			String sql = "update userlocation set location = ? and time = ? where useremail = ?";
+			String sql = "update userlocation set lastlocation = ? , lasttimefound = ? where useremail = ?";
 			con=Connections.connect();
 			ps=con.prepareStatement(sql);
-			ps.setString(1,data.getUserLocation());
+			ps.setString(1,data.getUserLocation().toString());
 			ps.setString(2,data.getTime());
 			ps.setString(3,data.getEmail());
-			ps.executeUpdate();
+			System.out.println(ps);
+			ps.execute();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}finally{

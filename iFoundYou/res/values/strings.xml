@@ -25,5 +25,7 @@
     <string name="title_activity_ifound_you_your_bud">IFoundYouYourBudActivity</string>
     <string name="title_activity_friend_location">FriendLocationActivity</string>
     <string name="isin">is in</string>
+    <string name="lastfound">Last time found :</string>
+    <string name="notfound">Not Found</string>
 
 </resources>

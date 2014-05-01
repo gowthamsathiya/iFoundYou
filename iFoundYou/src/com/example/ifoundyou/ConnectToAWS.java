@@ -31,10 +31,6 @@ public class ConnectToAWS extends AsyncTask<String,String,String>{
 		try {
 			HttpResponse response = httpClient.execute(httpGet);
 			responseString = new BasicResponseHandler().handleResponse(response);
-			if(responseString.equals("Registration successfull"))
-			{
-				System.out.println("Hello");
-			}
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

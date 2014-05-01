@@ -65,13 +65,13 @@ public class IFoundYouRegisterActivity extends Activity {
 				try {
 					String resultString = new ConnectToAWS().execute(url).get();
 					Toast.makeText(getApplicationContext(), resultString, Toast.LENGTH_SHORT).show();
-					if(resultString.equals("Registration successfull"))
+					if(resultString.contains("Registration successfull"))
 					{
 						FileHandler fh= new FileHandler();
-						fh.putCredential(getApplicationContext(), nameEditText.getText().toString(), passwordEditText.getText().toString());
+						fh.putCredential(getApplicationContext(), emailEditText.getText().toString(), passwordEditText.getText().toString());
 						navigateIntent = new Intent(getApplicationContext(),IFoundYouHomeActivity.class);
 						startActivity(navigateIntent);
-					}else if(resultString.equals("User already registered"))
+					}else if(resultString.contains("User already registered"))
 					{
 						Toast.makeText(getApplicationContext(),"User already registered! try login", Toast.LENGTH_SHORT).show();
 

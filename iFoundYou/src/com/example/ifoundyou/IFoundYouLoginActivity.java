@@ -40,13 +40,13 @@ try
 
 {
 	String resultString = new ConnectToAWS().execute(url).get();
-	if(resultString.equals("USRNF")){
-		Toast.makeText(getApplicationContext(), "Invalid Username! try register", Toast.LENGTH_SHORT).show();
-
+	FileHandler fh= new FileHandler();
+	if(resultString.contains("USRNF")){
+		Toast.makeText(getApplicationContext(), "Invalid Username and password! try register", Toast.LENGTH_SHORT).show();
 	}else if (resultString.equals("NFRNDS")){
-		
+		fh.putCredential(getApplicationContext(), nameEditText.getText().toString(), passwordEditText.getText().toString());
 	}else {
-		FileHandler fh= new FileHandler();
+		fh.putCredential(getApplicationContext(), nameEditText.getText().toString(), passwordEditText.getText().toString());
 		fh.putBudList(getApplicationContext(), resultString);
 		Intent navhome= new Intent(getApplicationContext(),IFoundYouHomeActivity.class);
 		startActivity(navhome);

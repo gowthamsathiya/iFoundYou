@@ -4,6 +4,7 @@ package com.example.ifoundyou;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 public class FileHandler {
 
@@ -48,8 +49,8 @@ public class FileHandler {
 		else
 			return null;
 	}
-	public void putCredential(Context ctx, String username, String password){
-		String data = username+";;"+password;
+	public void putCredential(Context ctx, String useremail, String password){
+		String data = useremail+";;"+password;
 		SharedPreferences cred = ctx.getSharedPreferences(credFileName, 0); 
 		Editor editor = cred.edit();
 		editor.putString("credValue", data);
@@ -82,7 +83,7 @@ public class FileHandler {
 		String budListData = cred.getString("budValue", null);
 		if(budListData!=null){			
 			Editor editor = cred.edit();
-			editor.putString("budValue", budListData+"/-/"+data); //each user is sperated by :::
+			editor.putString("budValue", budListData+"/-/"+data); //each user is sperated by /-/
 			editor.commit();
 		}
 		else{
@@ -95,7 +96,7 @@ public class FileHandler {
 	public void putBudList(Context ctx, String list){
 		SharedPreferences cred = ctx.getSharedPreferences(budFileName, 0); 
 		Editor editor = cred.edit();
-		editor.putString("budValue", list); //each user is sperated by :::
+		editor.putString("budValue", list); //each user is sperated by /-/
 		editor.commit();
 	}
 	
@@ -108,4 +109,25 @@ public class FileHandler {
 			return null;
 	}
 	
+	public void removeSP(Context ctx){
+		ctx.getSharedPreferences(credFileName, 0).edit().clear().commit();
+		ctx.getSharedPreferences(budFileName, 0).edit().clear().commit();
+	}
+	
+	public String getFriendEmail(Context ctx, String name){
+		SharedPreferences cred = ctx.getSharedPreferences(budFileName, 0); 
+		String budListData = cred.getString("budValue", null);
+		
+		if(budListData!=null){
+			String[] userPair = budListData.split("/-/");
+			for(String pair:userPair){
+				Log.d("pair", pair);
+				String[] nameemail = pair.split("-*-");
+				if(nameemail[0].equals(name)){
+					return pair.substring(pair.indexOf("-*-")+3, pair.length()-1);
+				}
+			}
+		}
+		return null;
+	}
 }

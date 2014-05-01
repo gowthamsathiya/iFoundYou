@@ -18,16 +18,19 @@ public class Validate {
 	
 	public static boolean validateEmail(String email){
 		pattern = Pattern.compile(EMAIL_PATTERN);
+		matcher = pattern.matcher(email);
 		return matcher.matches();
 	}
 	
 	public static boolean validateName(String name){
 		pattern = Pattern.compile(NAME_PATTERN);
+		matcher = pattern.matcher(name);
 		return matcher.matches();
 	}
 	
 	public static boolean validatePassword(String password){
 		pattern = Pattern.compile(PASSWORD_PATTER);
+		matcher = pattern.matcher(password);
 		return matcher.matches();
 	}
 	

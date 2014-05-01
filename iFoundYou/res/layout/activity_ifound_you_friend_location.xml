@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp"
-        android:text="Large Text"
+        android:text="@string/notfound"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -34,8 +34,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="238dp"
-        android:text="Large Text"
+        android:layout_marginTop="208dp"
+        android:text="@string/notfound"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/lastFoundLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="94dp"
+        android:layout_marginLeft="17dp"
+        android:text="@string/lastfound" />
+
+    <TextView
+        android:id="@+id/lastTimeFoudTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lastFoundLabelTextView"
+        android:layout_alignBottom="@+id/lastFoundLabelTextView"
+        android:layout_toRightOf="@+id/textView2"
+        android:text="@string/notfound" />
 
 </RelativeLayout>

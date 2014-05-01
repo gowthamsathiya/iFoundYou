@@ -11,6 +11,10 @@ public class IFoundYouFriendLocationActivity extends Activity {
 
 	String personName;
 	String personLocation;
+	private String lastTimeFound;
+	private TextView personNameTextView;
+	private TextView personLocationTextView;
+	private TextView lastTimeFoundTextView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,14 +22,17 @@ public class IFoundYouFriendLocationActivity extends Activity {
 		if(extras!=null){
 			personName = extras.getString(Constants.PERSON_NAME);
 			personLocation = extras.getString(Constants.PERSON_LOCATION);
+			lastTimeFound = extras.getString(Constants.LAST_FOUND);
 		}
 		setContentView(R.layout.activity_ifound_you_friend_location);
 		
-		TextView personNameTextView = (TextView)findViewById(R.id.personNameTextView);
-		TextView personLocationTextView = (TextView)findViewById(R.id.personLocationTextView);
+		personNameTextView = (TextView)findViewById(R.id.personNameTextView);
+		personLocationTextView = (TextView)findViewById(R.id.personLocationTextView);
+		lastTimeFoundTextView = (TextView)findViewById(R.id.lastTimeFoudTextView);
 		
 		personNameTextView.setText(personName);
 		personLocationTextView.setText(personLocation);
+		lastTimeFoundTextView.setText(lastTimeFound);
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class IFoundYouMainActivity extends Activity {
 
 	Button iFoundYouRegisterButton;
+	private Button iFoundYouLoginButton;
 	
 	public void onDestroy() {
 	    //    this.unregisterReceiver(receiver);
@@ -28,24 +29,21 @@ public class IFoundYouMainActivity extends Activity {
 		iFoundYouRegisterButton = (Button)findViewById(R.id.iFoundYouRegisterButton);
 		iFoundYouRegisterButton.setOnClickListener(registerListener);
 		
-		//Intent mServiceIntent = new Intent(this, SimpleIntentService.class);
-		//startService(mServiceIntent);
+		iFoundYouLoginButton = (Button)findViewById(R.id.iFoundYouLoginButton);
+		iFoundYouLoginButton.setOnClickListener(loginListener);
 		
 		FileHandler handler = new FileHandler();
-		/**
-		String l = "awd-*-efwe:::wjj-*-jbwq:::jhwhdwq jhg-*-wqqwf:::hvhjv-*-jgjg ygu";
-		handler.putBudList(getApplicationContext(), l);
-		**/
 		int val = handler.checkCredential(getApplicationContext());
 		if(val==0){
-			Toast.makeText(getApplicationContext(), "not found", Toast.LENGTH_SHORT).show();
-			Intent home = new Intent(this,IFoundYouRegisterActivity.class);
-			startActivity(home);
+			//Toast.makeText(getApplicationContext(), "not found", Toast.LENGTH_SHORT).show();
+			//Intent register = new Intent(this,IFoundYouRegisterActivity.class);
+			//startActivity(register);
 		}
-		else
+		else{
 			Toast.makeText(getApplicationContext(), "found", Toast.LENGTH_SHORT).show();
-		
-		
+			Intent home = new Intent(this,IFoundYouHomeActivity.class);
+			startActivity(home); 
+		}
 	}
 
 	private OnClickListener registerListener = new OnClickListener(){
@@ -54,6 +52,16 @@ public class IFoundYouMainActivity extends Activity {
 		public void onClick(View arg0) {
 			Intent registerActivity = new Intent(IFoundYouMainActivity.this, IFoundYouRegisterActivity.class);
 			startActivity(registerActivity);
+		}
+		
+	};
+	
+	private OnClickListener loginListener = new OnClickListener(){
+
+		@Override
+		public void onClick(View arg0) {
+			Intent loginActivity = new Intent(IFoundYouMainActivity.this, IFoundYouLoginActivity.class);
+			startActivity(loginActivity);
 		}
 		
 	};

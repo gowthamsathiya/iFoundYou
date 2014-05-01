@@ -1,6 +1,8 @@
 package com.example.ifoundyou;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import android.app.IntentService;
@@ -9,6 +11,8 @@ import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
+import android.widget.Toast;
 
 public class LocationServiceHandler extends IntentService{
 
@@ -44,9 +48,14 @@ public class LocationServiceHandler extends IntentService{
 			try {
 				FileHandler handler = new FileHandler();
 				String email = handler.getMyEmail(getApplicationContext());
-				String time = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-				String url = "ifoundyou.elasticbeanstalk.com/LocationChange?useremail="+email.trim()+"&location="+connectedWifiBSSID.trim()+"&time="+time.trim();
+				//String time = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+				SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd(HH:mm:ss)");
+				String time = dformat.format(new Date());
+				String url = "http://ifoundyou.elasticbeanstalk.com/LocationChange?useremail="+email.trim()+"&location="+connectedWifiBSSID.trim()+"&time="+time.trim();
+				Log.d("location change url", url);
 				String location = new ConnectToAWS().execute(url).get();
+				Log.d("response location of me", location);
+				//Toast.makeText(this, "response from url : "+location, Toast.LENGTH_SHORT).show();
 				if(!currentBSSID.equals(connectedWifiBSSID)){
 					if(connectedWifiBSSID!=null){
 						currentBSSID = connectedWifiBSSID;
